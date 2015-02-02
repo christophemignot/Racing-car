@@ -5,7 +5,19 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
         private const double LowPressureTreshold = 17;
         private const double HighPressureTreshold = 21;
 
-        Sensor _sensor = new Sensor();
+        //Put Sensor as ISensor, inject by the constructor
+        private ISensor sensor = new Sensor();
+
+        /// <summary>
+        /// Default constructor use Sensor implementation
+        /// </summary>
+        public Alarm() : this(new Sensor())
+        { }
+
+        public Alarm(ISensor sensor)
+        {
+            this.sensor = sensor;
+        }
 
         bool _alarmOn = false;
         private long _alarmCount = 0;
@@ -13,7 +25,7 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
 
         public void Check()
         {
-            double psiPressureValue = _sensor.PopNextPressurePsiValue();
+            double psiPressureValue = this.sensor.PopNextPressurePsiValue();
 
             if (psiPressureValue < LowPressureTreshold || HighPressureTreshold < psiPressureValue)
             {
