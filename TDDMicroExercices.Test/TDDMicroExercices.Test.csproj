@@ -66,7 +66,7 @@
     <Content Include="Data\UnicodeToHtml.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TDDMicroExercises-\TDDMicroExercises.csproj">
+    <ProjectReference Include="..\TDDMicroExercises\TDDMicroExercises.csproj">
       <Project>{32232686-e79d-40cb-94ed-c1628feee596}</Project>
       <Name>TDDMicroExercises</Name>
     </ProjectReference>
