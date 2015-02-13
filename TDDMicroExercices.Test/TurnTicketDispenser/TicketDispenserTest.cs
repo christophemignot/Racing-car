@@ -6,6 +6,7 @@
     [TestClass]
     public class TicketDispenserTest
     {
+        //*** Begin dependant tests  ==> Not good tests
         [TestMethod]
         public void WhenInitializedThenInstanceOk()
         {
@@ -46,5 +47,21 @@
 
             Assert.AreNotEqual(0, ticket.TurnNumber);
         }
+
+        //*** End dependant tests
+
+
+        [TestMethod]
+        public void WhenSeveralTicketsPickedThenLatestIsBiggest()
+        {
+            var firstDispenser = new TicketDispenser();
+            var secondDispenser = new TicketDispenser();
+
+            var firstTicket = firstDispenser.GetTurnTicket();
+            var secondTicket = secondDispenser.GetTurnTicket();
+
+            Assert.IsTrue(secondTicket.TurnNumber > firstTicket.TurnNumber);
+        }
+
     }
 }

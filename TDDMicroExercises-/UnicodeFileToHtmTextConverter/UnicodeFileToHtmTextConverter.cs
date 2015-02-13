@@ -15,13 +15,16 @@ namespace TDDMicroExercises.UnicodeFileToHtmTextConverter
 
         public string ConvertToHtml()
         {
-            using (TextReader unicodeFileStream = File.OpenText(_fullFilenameWithPath))
+            //TextReader to StreamReader
+            //Première dépendance externe
+            using (StreamReader unicodeFileStream = File.OpenText(_fullFilenameWithPath))
             {
                 string html = string.Empty;
 
                 string line = unicodeFileStream.ReadLine();
                 while (line != null)
                 {
+                    //Seconde dépendance externe
                     html += HttpUtility.HtmlEncode(line);
                     html += "<br />";
                     line = unicodeFileStream.ReadLine();

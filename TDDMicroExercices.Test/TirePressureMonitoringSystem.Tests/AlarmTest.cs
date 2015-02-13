@@ -51,5 +51,57 @@ namespace TDDMicroExercises.TirePressureMonitoringSystem
             Assert.AreEqual(true, alarm.AlarmOn);
             sensor.VerifyAll();
         }
+
+        /// <summary>
+        /// Mock manually coded
+        /// </summary>
+        [TestMethod]
+        public void WhenCustomSensorThenAlarmOn()
+        {
+            Alarm alarm = new Alarm(new MockSensor(21.1));
+
+            alarm.Check();
+
+            Assert.AreEqual(true, alarm.AlarmOn);
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        public class MockSensor : ISensor
+        {
+            private double internalValue;
+
+            public MockSensor(double value)
+            {
+                internalValue = value;
+            }
+
+            public double PopNextPressurePsiValue()
+            {
+                return internalValue;
+            }
+        }
     }
 }
